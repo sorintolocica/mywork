@@ -13,7 +13,7 @@
                 </div>
                 <div class="card-wrap">
                     <div class="card-header">
-                        <h4>Categorii anime</h4>
+                        <h4>Numarul de anime-uri</h4>
                     </div>
                     <div class="card-body">
                         12
@@ -63,78 +63,37 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="example1">
+                                <table class="table table-bordered table-striped custom-table">
                                     <thead>
                                     <tr>
-                                        <th>Ordinea</th>
-                                        <th>Denumirea</th>
-                                        <th>Categoria</th>
-                                        <th>Actiuni</th>
+                                        <th>ID</th>
+                                        <th>Titlu</th>
+                                        <th>Număr episod</th>
+                                        <th>Acțiuni</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>My Home Hero - Episodul 1</td>
-                                        <td>My Home Hero</td>
-                                        <td class="pt_10 pb_10">
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">Detalii</button>
-                                            <a href="" class="btn btn-danger" onClick="return confirm('Are you sure?');">Sterge</a>
-                                        </td>
-                                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Detail</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">×</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="form-group row bdb1 pt_10 mb_0">
-                                                            <div class="col-md-4"><label class="form-label">Item Name</label></div>
-                                                            <div class="col-md-8">Laptop</div>
-                                                        </div>
-                                                        <div class="form-group row bdb1 pt_10 mb_0">
-                                                            <div class="col-md-4"><label class="form-label">Description</label></div>
-                                                            <div class="col-md-8">This is a very good product. This is a very good product. This is a very good product. This is a very good product. This is a very good product. This is a very good product. </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Headphone</td>
-                                        <td>$40</td>
-                                        <td class="pt_10 pb_10">
-                                            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">Detail</button>
-                                            <a href="" class="btn btn-danger" onClick="return confirm('Are you sure?');">Delete</a>
-                                        </td>
-                                        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Detail</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">×</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="form-group row bdb1 pt_10 mb_0">
-                                                            <div class="col-md-4"><label class="form-label">Item Name</label></div>
-                                                            <div class="col-md-8">Headphone</div>
-                                                        </div>
-                                                        <div class="form-group row bdb1 pt_10 mb_0">
-                                                            <div class="col-md-4"><label class="form-label">Description</label></div>
-                                                            <div class="col-md-8">This is a very good product. This is a very good product. This is a very good product. This is a very good product. This is a very good product. This is a very good product. </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </tr>
+                                    @php
+                                        $episodes = \App\Models\Episode::orderBy('id', 'desc')->get();
+                                    @endphp
+                                    @foreach ($episodes as $episode)
+                                        <tr>
+                                            <td>{{ $episode->id }}</td>
+                                            <td>{{ $episode->title }}</td>
+                                            <td>{{ $episode->episode_number }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.edit-episode', $episode->id) }}" class="btn btn-primary">Editare</a>
+                                                <a href="{{ route('admin.delete-episode', $episode->id) }}" class="btn btn-danger"
+                                                   onclick="event.preventDefault(); if(confirm('Ești sigur că vrei să ștergi acest episod?')) document.getElementById('delete-episode-form-{{ $episode->id }}').submit();">
+                                                    Șterge
+                                                </a>
+                                                <form id="delete-episode-form-{{ $episode->id }}" action="{{ route('admin.delete-episode', $episode->id) }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -143,5 +102,6 @@
                 </div>
             </div>
         </div>
+    </section>
     </section>
 @endsection

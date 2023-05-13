@@ -8,12 +8,13 @@
             <div class="card login-card">
                 <div class="card-body">
                     <h3 class="card-title text-center">Autentificare</h3>
-                    <form>
+                    <form method="POST" action="{{ route('autentificare') }}">
+                        @csrf
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" name="email" class="form-control" placeholder="Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Parola">
+                            <input type="password" name="password" class="form-control" placeholder="Parola" required>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Logare</button>
                     </form>

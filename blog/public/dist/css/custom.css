@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
 body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 16px;
 }
 .btn {
     letter-spacing: normal;
@@ -119,8 +121,12 @@ table tr td {
     font-size: 16px;
 }
 table img {
-    padding-top: 10px;
-    margin-bottom: 10px;
+    display: block;
+    width: 150px;
+    height: 180px;
+    object-fit: cover;
+    margin: 5px auto;
+    border-radius: 5px;
 }
 .dataTables_wrapper {
     font-size: 14px!important;
