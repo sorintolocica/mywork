@@ -20,11 +20,9 @@
     </div><!-- xo-tabs -->
     <div class="episode-buttons">
         <button class="button-prev"><i class="fa fa-chevron-left"></i> Episodul anterior</button>
-        <a href="{{ route('anime.show', ['id' => $episode->anime->id]) }}" class="button-all">Toate episoadele</a>
-        <button class="button-next">Următorul episod <i class="fa fa-chevron-right"></i></button>
+    <a href="{{ route('anime.show', ['id' => $episode->anime->id]) }}" class="button-all">Toate episoadele</a>
+    <button class="button-next">Următorul episod <i class="fa fa-chevron-right"></i></button>
     </div>
-
-
 
     <br>
     <h2 class="section-title">Episod oferit de: </h2>
