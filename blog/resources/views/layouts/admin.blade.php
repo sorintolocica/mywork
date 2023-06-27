@@ -61,20 +61,26 @@
             </form>
             <ul class="navbar-nav navbar-right">
                 <li class="nav-link">
-                    <a href="" target="_blank" class="btn btn-warning">Front End</a>
+                    <a href="/" target="_blank" class="btn btn-warning">Site-ul principal</a>
                 </li>
-                <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                         <img alt="image" src="https://cdnb.artstation.com/p/assets/images/images/041/540/441/large/tr-n-thien-d-vu-799eb5de-173a-4c07-98a1-a585e9fe042f.jpg?1631985985" class="rounded-circle mr-1">
-                        <div class="d-sm-none d-lg-inline-block">Deus21</div></a>
+                        <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->name }}</div>
+                    </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="profile.html" class="dropdown-item has-icon">
+                        <a href="#" class="dropdown-item has-icon">
                             <i class="far fa-user"></i> Editare profil
                         </a>
-                        <a href="login.html" class="dropdown-item has-icon text-danger">
-                            <i class="fas fa-sign-out-alt"></i> Deloghează-te
-                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="dropdown-item has-icon text-danger">
+                                <i class="fas fa-sign-out-alt"></i> Deloghează-te
+                            </button>
+                        </form>
                     </div>
                 </li>
+
             </ul>
         </nav>
 
@@ -83,7 +89,9 @@
         <div class="main-sidebar">
             <aside id="sidebar-wrapper">
                 <div class="sidebar-brand">
-                    <a href="#">AnimeAZU Admin</a>
+                    <div class="logo-image">
+                        <img src="https://3.bp.blogspot.com/-MvKE9gYa4FQ/X0BlAp7-_BI/AAAAAAAAA48/SOWftgfOF2Esij_TnEog5TyeXUdzFsJ0wCK4BGAYYCw/s1600/Untitled-1.png" class="img-fluid">
+                    </div>
                 </div>
                 <div class="sidebar-brand sidebar-brand-sm">
                     <a href="#"></a>
@@ -91,23 +99,23 @@
 
                 <ul class="sidebar-menu">
 
-                    <li class="active"><a class="nav-link" href="#"><i class="fas fa-hand-point-right"></i> <span>Acasă</span></a></li>
+                    <li class="active"><a class="nav-link" href="/admin"><i class="fas fa-home"></i> <span>Acasă</span></a></li>
 
                     <li class="nav-item dropdown active">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Postează</span></a>
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-pencil-alt"></i><span>Postează</span></a>
                         <ul class="dropdown-menu">
-                            <li class="active"><a class="nav-link" href=""><i class="fas fa-angle-right"></i> Adaugă un anime</a></li>
-                            <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i> Adaugă un episod</a></li>
+                            <li class="active"><a class="nav-link" href="/admin/anime/create"><i class="fas fa-angle-right"></i> Adaugă un anime</a></li>
+                            <li class=""><a class="nav-link" href="/admin/episode/create"><i class="fas fa-angle-right"></i> Adaugă un episod</a></li>
                         </ul>
                     </li>
 
-                    <li class=""><a class="nav-link" href="setting.html"><i class="fas fa-hand-point-right"></i> <span>Setting</span></a></li>
+                    <li class=""><a class="nav-link" href="/admin/animes"><i class="fas fa-list"></i> <span>Lista anime</span></a></li>
 
-                    <li class=""><a class="nav-link" href="form.html"><i class="fas fa-hand-point-right"></i> <span>Form</span></a></li>
+                    <li class=""><a class="nav-link" href="/admin/episodes"><i class="fas fa-bars"></i> <span>Lista episoade</span></a></li>
 
-                    <li class=""><a class="nav-link" href="table.html"><i class="fas fa-hand-point-right"></i> <span>Table</span></a></li>
+                    <li class=""><a class="nav-link" href="table.html"><i class="fas fa-users"></i> <span>Useri</span></a></li>
 
-                    <li class=""><a class="nav-link" href="invoice.html"><i class="fas fa-hand-point-right"></i> <span>Invoice</span></a></li>
+                    <li class=""><a class="nav-link" href="invoice.html"><i class="fas fa-envelope"></i> <span>Mesaje recrutari</span></a></li>
 
                 </ul>
             </aside>

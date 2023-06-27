@@ -502,3 +502,112 @@ label {
 .sidebar-list li a:hover {
     color: #666;
 }
+
+.anime-info {
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.anime-image {
+    flex: 0 0 200px;
+}
+
+.anime-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.anime-details {
+    flex: 1;
+    padding: 20px;
+}
+
+.anime-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.anime-meta p {
+    margin-bottom: 5px;
+}
+
+.anime-synopsis {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.anime-synopsis strong {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.anime-meta p:not(:last-child)::after,
+.anime-synopsis p:not(:last-child)::after {
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: #ccc;
+    margin-top: 5px;
+}
+
+.anime-episodes {
+    margin-top: 20px;
+    color: white;
+}
+
+.anime-episodes h4 {
+    margin-bottom: 10px;
+}
+
+.episode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.episode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #38456d;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.episode-number {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.episode-title {
+    margin-top: 5px;
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.profile-details {
+    text-align: left;
+    color: white;
+}
+
+

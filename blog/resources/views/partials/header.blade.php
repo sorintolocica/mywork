@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="./index.html">
+        <a class="navbar-brand" href="/">
             <div class="logo-image">
                 <img src="https://3.bp.blogspot.com/-MvKE9gYa4FQ/X0BlAp7-_BI/AAAAAAAAA48/SOWftgfOF2Esij_TnEog5TyeXUdzFsJ0wCK4BGAYYCw/s1600/Untitled-1.png" class="img-fluid">
             </div>
@@ -26,12 +26,25 @@
         </div>
     </div>
 </nav>
-<div class="profile">
-    <a href="/autentificare" class="profile-link">
-        <i class="fa fa-user"></i>
-        <span class="profile-text">Autentificare</span>
-    </a>
-</div>
+@guest
+    <div class="profile">
+        <a href="{{ route('autentificare') }}" class="profile-link">
+            <i class="fa fa-user"></i>
+            <span class="profile-text">Autentificare</span>
+        </a>
+    </div>
+@endguest
+
+    @auth
+        <div class="profile">
+            <div class="profile-container">
+                <img src="{{ auth()->user()->image }}" class="profile-image" alt="Profile Image">
+                <div class="profile-details">
+                    <h5 class="profile-name">{{ auth()->user()->name }}</h5>
+                </div>
+            </div>
+        </div>
+    @endauth
 <div class="welcome-text">
     <h1>Bun venit!</h1>
     <p>Vizionează orice anime dorești cu subtitrare în limba română!</p>

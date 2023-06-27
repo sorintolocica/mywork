@@ -4,78 +4,43 @@
 
     <h2 class="section-title">Anime populare</h2>
     <div class="anime-carousel owl-carousel owl-theme">
-        <div class="anime-card">
-            <span class="episode-badge">Anime</span>
-            <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974713240/hell-s-paradise-jigokuraku-vol-5-9781974713240_hr.jpg" alt="Anime 1">
-            <h5 class="card-title">Domestic No Kanajo</h5>
-        </div>
-        <div class="anime-card">
-            <span class="episode-badge">Anime</span>
-            <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974713240/hell-s-paradise-jigokuraku-vol-5-9781974713240_hr.jpg" alt="Anime 2">
-            <h5 class="card-title">Attack on Titan</h5>
-        </div>
-        <div class="anime-card">
-            <span class="episode-badge">Anime</span>
-            <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974713240/hell-s-paradise-jigokuraku-vol-5-9781974713240_hr.jpg" alt="Anime 3">
-            <h5 class="card-title">Naruto</h5>
-        </div>
+        @foreach($animes as $anime)
+            <div class="anime-card">
+                <span class="episode-badge">{{$anime['episodes']}} Episoade</span>
+                <a href="{{ route('anime.show', $anime->id) }}">
+                    <img src="{{ asset('storage/' . $anime['image']) }}" alt="{{$anime['title']}}">
+                    <h5 class="card-title">{{$anime['title']}}</h5>
+                </a>
+            </div>
+
+        @endforeach
         <!-- Adăugați mai multe carduri anime aici -->
     </div>
     <div class="row">
         <div class="col-md-8">
             <h2 class="section-title">Cele mai recente episoade</h2>
             <div class="row">
-                <div class="col-md-3">
-                    <a href="./post-anime.html">
-                        <div class="anime-card">
-                            <span class="episode-badge">1 SUB</span>
-                            <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974713240/hell-s-paradise-jigokuraku-vol-5-9781974713240_hr.jpg" alt="Anime 1">
-                            <h5 class="card-title">Domestic No Kanajo</h5>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <div class="anime-card">
-                        <span class="episode-badge">1 SUB</span>
-                        <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974713240/hell-s-paradise-jigokuraku-vol-5-9781974713240_hr.jpg" alt="Anime 1">
-                        <h5 class="card-title">Domestic No Kanajo</h5>
+                @php
+                    $episodes = \App\Models\Episode::orderBy('id', 'desc')->get();
+                @endphp
+                @foreach ($episodes as $episode)
+                    <div class="col-md-3">
+                        <a href="/episode/{{ $episode->id }}">
+                            <div class="anime-card">
+                                <span class="episode-badge">{{ $episode->episode_number }} SUB</span>
+                                @if ($episode->anime)
+                                    @php
+                                        $anime = $episode->anime;
+                                    @endphp
+                                    <img src="{{ asset('storage/' . $anime->image) }}" alt="{{ $episode->title }}">
+                                @else
+                                    <img src="{{ asset('storage/' . $anime['image']) }}" alt="{{$anime['title']}}" alt="{{ $episode->title }}">
+                                @endif
+                                <h5 class="card-title">{{ $anime->title }}</h5>
+                            </div>
+                        </a>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="anime-card">
-                        <span class="episode-badge">1 SUB</span>
-                        <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974713240/hell-s-paradise-jigokuraku-vol-5-9781974713240_hr.jpg" alt="Anime 1">
-                        <h5 class="card-title">Domestic No Kanajo</h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="anime-card">
-                        <span class="episode-badge">1 SUB</span>
-                        <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974713240/hell-s-paradise-jigokuraku-vol-5-9781974713240_hr.jpg" alt="Anime 1">
-                        <h5 class="card-title">Domestic No Kanajo</h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="anime-card">
-                        <span class="episode-badge">1 SUB</span>
-                        <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974713240/hell-s-paradise-jigokuraku-vol-5-9781974713240_hr.jpg" alt="Anime 1">
-                        <h5 class="card-title">Domestic No Kanajo</h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="anime-card">
-                        <span class="episode-badge">1 SUB</span>
-                        <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974713240/hell-s-paradise-jigokuraku-vol-5-9781974713240_hr.jpg" alt="Anime 1">
-                        <h5 class="card-title">Domestic No Kanajo</h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="anime-card">
-                        <span class="episode-badge">1 SUB</span>
-                        <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781974713240/hell-s-paradise-jigokuraku-vol-5-9781974713240_hr.jpg" alt="Anime 1">
-                        <h5 class="card-title">Domestic No Kanajo</h5>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <div class="col-md-4 order-md-12">

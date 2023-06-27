@@ -198,3 +198,16 @@ ul.xo-tab-links li.current {
 .button-like.liked i {
     color: #f00;
 }
+
+.button-all {
+    background-color: #262e41;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.button-all:hover {
+    background-color: #333;
+}

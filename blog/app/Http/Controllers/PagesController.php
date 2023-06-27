@@ -26,18 +26,19 @@ class PagesController extends Controller
         return view('pages.contact');
     }
 
-    public function autentificare()
+
+    public function episode()
     {
-        return view('pages.autentificare');
+        return view('pages.episode');
     }
 
-    public function inregistrare()
+    public function anime()
     {
-        return view('pages.inregistrare');
+        return view('pages.anime');
     }
 
-    public function admin()
+    public function profile()
     {
-        return view('admin.home');
+        return view('admin.profile');
     }
 }
